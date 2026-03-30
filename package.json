@@ -4,7 +4,9 @@
   "description": "Projeto de testes de aceitação do app BugerEats",
   "main": "index.js",
   "scripts": {
-    "test": "npx cypress open"
+    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass    "test": "npm run cy:run",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "author": "Fernando Papito",
   "license": "MIT",

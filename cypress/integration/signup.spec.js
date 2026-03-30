@@ -9,9 +9,9 @@ describe('Signup', () => {
     //     })
     // })
 
-    it.only('User should be deliver', function () {
+    it('User should be deliver', function () {
 
-        var deliver = signupFactory.deliver()
+        const deliver = signupFactory.deliver()
 
         signupPage.go()
         signupPage.fillForm(deliver)
@@ -23,7 +23,7 @@ describe('Signup', () => {
 
     it('Incorrect document', function () {
 
-        var deliver = signupFactory.deliver()
+        const deliver = signupFactory.deliver()
 
         deliver.cpf = '000000141aa'
 
@@ -35,7 +35,7 @@ describe('Signup', () => {
 
     it('Incorrect email', function () {
 
-        var deliver = signupFactory.deliver()
+        const deliver = signupFactory.deliver()
 
         deliver.email = 'user.com.br'
 
@@ -57,7 +57,7 @@ describe('Signup', () => {
             { field: 'cnh', output: 'Adicione uma foto da sua CNH' }
         ]
 
-        before(function(){
+        beforeEach(function(){
             signupPage.go()
             signupPage.submit()
         })

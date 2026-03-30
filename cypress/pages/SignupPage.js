@@ -5,7 +5,7 @@ class SignupPage {
     go() {
         cy.visit('/')
 
-        cy.get('a[href="/deliver').click()
+        cy.get('a[href="/deliver"]').click()
         cy.get('#page-deliver form h1').should('have.text', 'Cadastre-se para  fazer entregas')
     }
 
@@ -17,16 +17,13 @@ class SignupPage {
 
         cy.get('input[name="postalcode"]').type(deliver.address.postalcode)
 
-        cy.fixture('mockecep').then(function(mockcep){  
-            cy.intercept('GET', 'https://viacep.com.br/ws/**', {
-                statusCode: 200,
-                body: mockcep
-            }).as('mockedcep')
-        })
+        cy.intercept('GET', 'https://viacep.com.br/ws/**', {
+            fixture: 'mockcep.json'
+        }).as('mockedCep')
 
         cy.get('input[type=button][value="Buscar CEP"]').click()
 
-        cy.wait('@mockedcep')
+        cy.wait('@mockedCep')
 
         cy.get('input[name="address-number"]').type(deliver.address.number)
         cy.get('input[name="address-details"]').type(deliver.address.details)
@@ -36,7 +33,7 @@ class SignupPage {
         cy.get('input[name="city-uf"]').should('have.value', deliver.address.city_state)
 
         cy.contains('.delivery-method li', deliver.delivery_method).click()
-        cy.get('input[accept^="image"]').attachFile('/images/' + deliver.cnh)
+        cy.get('input[accept^="image"]').attachFile(`images/${deliver.cnh}`)
     }
 
     submit() {

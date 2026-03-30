@@ -30,6 +30,21 @@ yarn install
 npx cypress run
 ```
 
+No Windows PowerShell, se aparecer `UnauthorizedAccess` ao rodar `npm` ou `npx`, o bloqueio é da policy do próprio PowerShell para os arquivos `npm.ps1` e `npx.ps1`. Use uma destas opções:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+npm run cy:open
+npm run cy:run
+```
+
+Ou chame diretamente os wrappers do Windows:
+
+```powershell
+npm.cmd run cy:open
+npx.cmd cypress run
+```
+
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
