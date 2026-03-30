@@ -26,6 +26,8 @@ class SignupPage {
 
         cy.get('input[type=button][value="Buscar CEP"]').click()
 
+        cy.wait('@mockedcep')
+
         cy.get('input[name="address-number"]').type(deliver.address.number)
         cy.get('input[name="address-details"]').type(deliver.address.details)
 
