@@ -16,6 +16,14 @@ class SignupPage {
         cy.get('input[name="whatsapp"]').type(deliver.whatsapp)
 
         cy.get('input[name="postalcode"]').type(deliver.address.postalcode)
+
+        cy.fixture('mockecep').then(function(mockcep){  
+            cy.intercept('GET', 'https://viacep.com.br/ws/**', {
+                statusCode: 200,
+                body: mockcep
+            }).as('mockedcep')
+        })
+
         cy.get('input[type=button][value="Buscar CEP"]').click()
 
         cy.get('input[name="address-number"]').type(deliver.address.number)

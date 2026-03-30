@@ -9,7 +9,7 @@ describe('Signup', () => {
     //     })
     // })
 
-    it('User should be deliver', function () {
+    it.only('User should be deliver', function () {
 
         var deliver = signupFactory.deliver()
 
